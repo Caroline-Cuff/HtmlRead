@@ -6,6 +6,7 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 public class HtmlRead {
+    public int counts;
 
     public static void main(String[] args) {
         HtmlRead html = new HtmlRead();
@@ -20,8 +21,8 @@ public class HtmlRead {
         try {
             System.out.println(); // ensure that the code is running
             System.out.print("hello \n");
-            URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
-        //    URL url = new URL ("https://www.manchestersailing.org/");
+          //  URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
+            URL url = new URL ("https://www.manchestersailing.org/");
 
             URLConnection urlc = url.openConnection(); // connects to itnernet
             urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; " + "Windows NT 5.1; en-US; rv:1.8.0.11) ");
@@ -35,9 +36,9 @@ public class HtmlRead {
            //     System.out.println(line); // - 247 'HTTP'
 
                 //todo: only print line when link
-                if (line.contains("http")) {
-                    line.indexOf("http"); // start the substring here
-                    String startIndex = line.substring(line.indexOf("http"));// read line by line
+                if (line.contains("href=")) {
+                    line.indexOf("href="); // start the substring here
+                    String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
                     //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
 
                     //todo: get rid of html after link
@@ -47,22 +48,21 @@ public class HtmlRead {
 
                     int x = 0;
                     if (link.contains(input)) { // programmer specified string
-                        System.out.println("end " + link);
+                        counts++;
+                        System.out.println(link);
                     }
-                    //   System.out.println("There are " + x + " instances of " + input);
-                    // figure out how to x++ to correct number
-                    x++;
-                    //345 'http'
 
-                    System.out.println("There are " + x + " instances of " + input);
+
 
                 }
+
 
 //                    System.out.println(line.substring(line.indexOf("http"),line.indexOf('"')));
                 //System.out.println(line.substring(line.indexOf("http"), line.indexOf('>')));
 
-
             }
+            System.out.println("there are "+  counts + " instances of '" + input + "'");
+
             reader.close();
         } catch(Exception ex) {
             // explains to the user the issue
