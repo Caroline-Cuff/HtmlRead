@@ -24,12 +24,13 @@ public class HtmlRead {
         System.out.println("What word do you choose?:");
         String input = s.nextLine();
 
+
         //try - if something is wrong, it will tell whats wrong
             try {
                 System.out.println(); // ensure that the code is running
                 System.out.print("hello \n");
-                //  URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
-                URL url = new URL("https://www.manchestersailing.org/");
+                  URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
+                //URL url = new URL("https://www.manchestersailing.org/");
 
                 URLConnection urlc = url.openConnection(); // connects to itnernet
                 urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; " + "Windows NT 5.1; en-US; rv:1.8.0.11) ");
@@ -44,6 +45,7 @@ public class HtmlRead {
 
                     //todo: only print line when link
                     if (line.contains("href=")) {
+                        System.out.println(line);
                         line.indexOf("href="); // start the substring here
                         String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
                         //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
@@ -78,10 +80,10 @@ public class HtmlRead {
                 System.out.println(ex);
             }
             String again = s.nextLine();
-            if (again == "yes"){ //running wo play  button
+            if (again.equals("yes")){ //running wo play  button
                 run = true;
             }
-            else if (again == "no") {
+            else if (again.equals("no")) {
                 run = false;
             } // if statement
 
