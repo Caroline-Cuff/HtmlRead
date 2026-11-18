@@ -8,13 +8,19 @@ import java.util.Scanner;
 public class HtmlRead {
     public int counts;
     public boolean run;
-    public int total;
+    public int index;
 
 
     public static void main(String[] args) {
         HtmlRead html = new HtmlRead();
     }
 
+    //todo: figure out how to have it not matter if capitalized
+    /// FIRST todo: multiple links in one line
+    /// make new substring and start it at the endindex of the old string
+    /// while loop
+    ///
+    //todo: tidy up
 
 
     public HtmlRead() {
@@ -30,7 +36,7 @@ public class HtmlRead {
             try {
                 System.out.println(); // ensure that the code is running
                 System.out.print("hello \n");
-                  URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
+                URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
                 //URL url = new URL("https://www.manchestersailing.org/");
 
                 URLConnection urlc = url.openConnection(); // connects to itnernet
@@ -43,29 +49,28 @@ public class HtmlRead {
                 System.out.println(input); // word scanning for
                 while ((line = reader.readLine()) != null) { // while there is a line
                     //     System.out.println(line); // - 247 'HTTP'
-                    System.out.println("total:" + total);
 
 
                     //todo: only print line when link
                     if (line.contains("href=")) {
-                        System.out.println(line);
-                        total = line.indexOf("href=");
+                        System.out.println(line); // reads full line if contains href  //todo: turn this off once finished
                         line.indexOf("href="); // start the substring here
                         String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
+                        System.out.println();
+
+
                         //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
 
                         //todo: get rid of html after link
                         int endIndex = startIndex.indexOf('"'); // all links end with "
                         //   System.out.println(endIndex); // same  as line above
                         String link = startIndex.substring(0, endIndex); // new substring for each linke
-                        total = total + endIndex;
 
                         int x = 0;
                         if (link.contains(input)) { // programmer specified string
                             counts++;
-                            System.out.println(link);
+                         //   System.out.println(link); //todo: turn on once finished
                         }
-                        System.out.println("total:" + total);
 
 
                     }
@@ -75,6 +80,7 @@ public class HtmlRead {
                     //System.out.println(line.substring(line.indexOf("http"), line.indexOf('>')));
 
                 }
+                // counting the number of times input appears in a link
                 System.out.println("there are " + counts + " instances of '" + input + "'");
                 System.out.println("Run again?");
 
@@ -85,9 +91,12 @@ public class HtmlRead {
                 // explains to the user the issue
                 System.out.println(ex);
             }
+            // run the program again without the go button
             String again = s.nextLine();
             if (again.equals("yes")){ //running wo play  button
                 run = true;
+                counts = 0;
+                System.out.println(counts);
             }
             else if (again.equals("no")) {
                 run = false;
