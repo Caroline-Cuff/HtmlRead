@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class HtmlRead {
     public int counts;
     public boolean run;
+    public int total;
 
 
     public static void main(String[] args) {
@@ -42,10 +43,13 @@ public class HtmlRead {
                 System.out.println(input); // word scanning for
                 while ((line = reader.readLine()) != null) { // while there is a line
                     //     System.out.println(line); // - 247 'HTTP'
+                    System.out.println("total:" + total);
+
 
                     //todo: only print line when link
                     if (line.contains("href=")) {
                         System.out.println(line);
+                        total = line.indexOf("href=");
                         line.indexOf("href="); // start the substring here
                         String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
                         //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
@@ -54,12 +58,14 @@ public class HtmlRead {
                         int endIndex = startIndex.indexOf('"'); // all links end with "
                         //   System.out.println(endIndex); // same  as line above
                         String link = startIndex.substring(0, endIndex); // new substring for each linke
+                        total = total + endIndex;
 
                         int x = 0;
                         if (link.contains(input)) { // programmer specified string
                             counts++;
                             System.out.println(link);
                         }
+                        System.out.println("total:" + total);
 
 
                     }
