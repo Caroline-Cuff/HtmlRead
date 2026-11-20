@@ -34,7 +34,7 @@ public class HtmlRead {
 
         //try - if something is wrong, it will tell whats wrong
             try {
-                System.out.println(); // ensure that the code is running
+               // System.out.println(); // ensure that the code is running
                 System.out.print("hello \n");
                 URL url = new URL("https://en.wikipedia.org/wiki/Percy_Jackson"); // the website it is pulling from
                 //URL url = new URL("https://www.manchestersailing.org/");
@@ -52,12 +52,12 @@ public class HtmlRead {
 
 
                     //todo: only print line when link
-                    if (line.contains("href=")) {
-                        while (line.contains("href=")) {
-                            System.out.println(line); // reads full line if contains href  //todo: turn this off once finished
+//                    if (line.contains("href=")) {
+                        while (line.contains("href=")) { // trying to loop for many links in one line
+                           // System.out.println(line); // reads full line if contains href  //todo: turn this off once finished
                             line.indexOf("href="); // start the substring here
                             String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
-                            System.out.println();
+                       //     System.out.println();
 
 
                             //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
@@ -66,26 +66,26 @@ public class HtmlRead {
                             int endIndex = startIndex.indexOf('"'); // all links end with "
                             //   System.out.println(endIndex); // same  as line above
                             String link = startIndex.substring(0, endIndex); // new substring for each linke
+                            line = line.substring(line.indexOf("href") + 1);
 
                             int x = 0;
                             if (link.contains(input)) { // programmer specified string
                                 counts++;
-                                //   System.out.println(link); //todo: turn on once finished
+                                   System.out.println(link); //todo: turn on once finished
                             }
 
-                            line = line.substring(endIndex);
-                        }
-
-                    }
 
 
 //                    System.out.println(line.substring(line.indexOf("http"),line.indexOf('"')));
-                    //System.out.println(line.substring(line.indexOf("http"), line.indexOf('>')));
+                            //System.out.println(line.substring(line.indexOf("http"), line.indexOf('>')));
 
-                }
-                // counting the number of times input appears in a link
-                System.out.println("there are " + counts + " instances of '" + input + "'");
-                System.out.println("Run again?");
+                        }
+                    }
+  //              }
+                    // counting the number of times input appears in a link
+                    System.out.println("there are " + counts + " instances of '" + input + "'");
+                    System.out.println("Run again?");
+
 
 
                 reader.close();
