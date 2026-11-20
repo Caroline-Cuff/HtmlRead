@@ -53,25 +53,28 @@ public class HtmlRead {
 
                     //todo: only print line when link
                     if (line.contains("href=")) {
-                        System.out.println(line); // reads full line if contains href  //todo: turn this off once finished
-                        line.indexOf("href="); // start the substring here
-                        String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
-                        System.out.println();
+                        while (line.contains("href=")) {
+                            System.out.println(line); // reads full line if contains href  //todo: turn this off once finished
+                            line.indexOf("href="); // start the substring here
+                            String startIndex = line.substring(line.indexOf("href") + 6);// read line by line
+                            System.out.println();
 
 
-                        //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
+                            //  System.out.println("\n" +startIndex);  // - nearly quarters number of links
 
-                        //todo: get rid of html after link
-                        int endIndex = startIndex.indexOf('"'); // all links end with "
-                        //   System.out.println(endIndex); // same  as line above
-                        String link = startIndex.substring(0, endIndex); // new substring for each linke
+                            //todo: get rid of html after link
+                            int endIndex = startIndex.indexOf('"'); // all links end with "
+                            //   System.out.println(endIndex); // same  as line above
+                            String link = startIndex.substring(0, endIndex); // new substring for each linke
 
-                        int x = 0;
-                        if (link.contains(input)) { // programmer specified string
-                            counts++;
-                         //   System.out.println(link); //todo: turn on once finished
+                            int x = 0;
+                            if (link.contains(input)) { // programmer specified string
+                                counts++;
+                                //   System.out.println(link); //todo: turn on once finished
+                            }
+
+                            line = line.substring(endIndex);
                         }
-
 
                     }
 
